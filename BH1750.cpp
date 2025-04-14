@@ -25,10 +25,10 @@ bool BH1750::configure(Mode mode) {
 
 float BH1750::readLightLevel() {
     if (!_initialized) {
-        return -1.0f; // Sensor not initialized
+        return -1.0f;
     }
 
-    // For one-time modes, we need to send the measurement command first
+
     if (_mode == ONE_TIME_HIGH_RES_MODE || 
         _mode == ONE_TIME_HIGH_RES_MODE_2 || 
         _mode == ONE_TIME_LOW_RES_MODE) {
@@ -37,7 +37,7 @@ float BH1750::readLightLevel() {
         }
     }
 
-    // Different modes require different measurement times
+
     unsigned long measurementDelay = 0;
     switch (_mode) {
         case CONTINUOUS_HIGH_RES_MODE:
@@ -63,8 +63,8 @@ float BH1750::readLightLevel() {
     uint16_t level = Wire.read() << 8;
     level |= Wire.read();
 
-    // Convert raw value to lux based on mode
-    float lux = level / 1.2f; // Default conversion factor for high res mode
+  
+    float lux = level / 1.2f; 
     
     // For mode 2 (different measurement range)
     if (_mode == CONTINUOUS_HIGH_RES_MODE_2 || _mode == ONE_TIME_HIGH_RES_MODE_2) {
