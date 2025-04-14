@@ -7,7 +7,7 @@
 class BH1750 {
 public:
     enum Mode {
-        UNCONFIGURED = 0x00,  // Added to indicate uninitialized state
+        UNCONFIGURED = 0x00, 
         CONTINUOUS_HIGH_RES_MODE = 0x10,
         CONTINUOUS_HIGH_RES_MODE_2 = 0x11,
         CONTINUOUS_LOW_RES_MODE = 0x13,
@@ -16,16 +16,16 @@ public:
         ONE_TIME_LOW_RES_MODE = 0x23
     };
 
-    BH1750(uint8_t addr = 0x23);  // Default I2C address is 0x23
+    BH1750(uint8_t addr = 0x23);  
 
     bool begin(Mode mode = CONTINUOUS_HIGH_RES_MODE);
     bool configure(Mode mode);
-    float readLightLevel(); // Returns lux value, or -1 on error
+    float readLightLevel(); 
 
 private:
     uint8_t _address;
     Mode _mode;
-    bool _initialized = false;  // Track initialization state
+    bool _initialized = false;  
 };
 
 #endif
